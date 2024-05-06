@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script uses the until loop to dispay "Best School" 10 times.
+counter=0
+until [ $counter = 10 ]
+do
+	echo "Best School"
+	((counter++))
+done
