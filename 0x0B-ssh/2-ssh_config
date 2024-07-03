@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script configures an ssh server to not prompt for a password
+Host myserver
+	HostName 172.23.131.134
+	User ubuntu
+	IdentityFile ~/.ssh/school
+	PasswordAuthentication no
