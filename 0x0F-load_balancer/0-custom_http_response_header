@@ -14,7 +14,7 @@ if [ ! -f "$NGINX_CONF.bak" ]; then
 	sudo cp "$NGINX_CONF" "$NGINX_CONF.bak"
 fi
 
-sed -i '/^ *server *{/,/^ *}$/s/^\( *server *{\)/\1\n    add_header X-Served-By '$HOST_NAME';/' "$NGINX_CONF"
+sed -i '/^ *server *{/,/^ *}$/s/^\( *server *{\)/\1\n    add_header X-Served-By '"$HOST_NAME"';/' "$NGINX_CONF"
 
 sudo service restart nginx
 
