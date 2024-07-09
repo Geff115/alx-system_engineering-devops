@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# This script installs a load balancer with HAproxy
+
+apt-get -y update
+apt-get -y install haproxy
+
+# Setting up Round Robin algorithm
+echo '
+frontend gabrieleffangha.tech
+	bind 0:80
+	default_backend web_servers
+
+backend web_servers
+	mode http
+	balance roundrobin
+	server 419727-web-01 52.91.182.65:80
+	server 419727-web-02 100.24.235.193:80
+' >> /etc/haproxy/haproxy.cfg
+
+# Restart HAproxy server
+service haproxy restart
