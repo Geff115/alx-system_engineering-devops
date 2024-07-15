@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script uses Apache server to run in a docker container at port 8080:80
+container_id=$(docker run -p 8080:80 -d -it holberton/265-0)
+# Enter inside the container
+docker exec -ti "$container_id" /bin/bash
+# Update the packages in the container
+apt-get update
+# Install Apache in the container
+apt-get install -y apache2
+# Start the Apache service to ensure it runs properly
+service apache2 start
+# Give Apache a moment to start
+sleep 5
+# Log out from the container
+exit
+# curl the port 80 to return a page that contains Hello Holberton
+curl 0:8080
