@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-# Creationg an RSA key with the password betty
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/school -P betty
+# Creating an SSH RSA key with the password betty
+ssh-keygen -t rsa -b 4096 -N "betty" -f ~/.ssh/school
