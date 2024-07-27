@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script secures Nginx server by running it as a non-root user.
+sudo useradd nginx
+sudo chown nginx /var/www/html
+sudo sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
+sudo service nginx restart
