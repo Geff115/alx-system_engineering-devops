@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script automates the process of Nginx to listen on port 8080
+sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+sudo sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
+sudo service nginx restart
