@@ -14,13 +14,14 @@ def main():
     Main function
     """
 
-    url_1 = f"https://jsonplaceholder.typicode.com/users/{sys.argv[1]}"
+    user_id = sys.argv[1]
+    url_1 = f"https://jsonplaceholder.typicode.com/users/{user_id}"
     response_1 = requests.get(url_1)
     users = response_1.json()
     EMPLOYEE_NAME = users.get("name")
 
     url_2 = 'https://jsonplaceholder.typicode.com/todos'
-    params = {'userID': sys.argv[1]}
+    params = {'userID': user_id}
     response_2 = requests.get(url_2, params=params)
 
     if response_2.status_code == 200:
