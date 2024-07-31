@@ -4,16 +4,12 @@ This module uses a REST API for a given employee ID,
 returns information about his/her TODO list progress
 """
 
-import json
+
 import requests
 import sys
 
 
 def main():
-    """
-    Main function
-    """
-
     user_id = sys.argv[1]
     url_1 = f"https://jsonplaceholder.typicode.com/users/{user_id}"
     response_1 = requests.get(url_1)
