@@ -9,7 +9,10 @@ import requests
 import sys
 
 
-if __name__ == "__main__":
+def main():
+    """
+    Main function
+    """
 
     url_1 = f"https://jsonplaceholder.typicode.com/users/{sys.argv[1]}"
     response_1 = requests.get(url_1)
@@ -19,7 +22,9 @@ if __name__ == "__main__":
     url_2 = 'https://jsonplaceholder.typicode.com/todos'
     params = {'userID': sys.argv[1]}
     response_2 = requests.get(url_2, params=params)
-    todos = response_2.json()
+
+    if response_2.status_code == 200:
+        todos = response_2.json()
 
     NUMBER_OF_DONE_TASKS = 0
     TOTAL_NUMBER_OF_TASKS = 0
@@ -30,6 +35,11 @@ if __name__ == "__main__":
         if i.get("completed") is True:
             NUMBER_OF_DONE_TASKS += 1
             TASK_TITLE.append(i.get("title"))
-    print(f"Employee {EMPLOYEE_NAME} is done with tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
+    print(f"Employee {EMPLOYEE_NAME} is done with tasks"
+          f"({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
     for i in TASK_TITLE:
-        print("\t " + i)
+        print('\t ' + i)
+
+
+if __name__ == "__main__":
+    main()
