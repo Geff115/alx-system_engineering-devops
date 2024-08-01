@@ -1,33 +1,4 @@
 #!/usr/bin/env bash
-# This script automates Nginx installation and ensures it runs on port 80 for all IPV4 IPs
-# Update the package list
-sudo apt-get update
-# Install Nginx
-# Update the package lists
-sudo apt-get upgrade -y
-sudo apt-get install -y nginx
-# Check if any process is using port 80
-if sudo lsof -i :80; then
-	echo "Port 80 is already in use. Please free the port and try again."
-	exit 1
-fi
-# Enable nginx to start
-sudo service nginx start
-# Sleep for 5 seconds to let Nginx run
-sleep 5
-nginx_conf="/etc/nginx/sites-available/default"
-# Ensure Nginx listens on port 80
-if ! grep -q "listen 80;" "$nginx_conf"; then
-	if ! grep -q "listen 80 default_server;" "$nginx_conf"; then
-		echo "listen 80 default_server;" >> "$nginx_conf"
-	fi
-fi
-# Check Nginx configuration for syntax errors
-sudo nginx -t
-# Restart Nginx to apply configuration changes
-sudo service nginx restart
-# Check the status of Nginx service
-sudo service nginx status
-# Check Nginx error logs
-echo "Nginx error log:"
-sudo tail -n 20 /var/log/nginx/error.log
+# This script automates Nginx and ensures it runs on port 80 for all IPV4 IPs
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+service nginx restart
